@@ -1,16 +1,21 @@
+import { Routes, Route } from 'react-router-dom';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <ul>
+        <li>
+          <link to="/create">Create quiz</link>
+        </li>
+        <li>
+          <link to="/quizes">Quiz List</link>
+        </li>
+      </ul>
+      <Routes>
+        <Route path="/create" element={<div>Create quiz Page</div>} />
+        <Route path="/quizes" element={<div>Quizes Page</div>} />
+        <Route path="/quizes/:quizId" element={<div>Single quize Page</div>} />
+      </Routes>
     </div>
   );
 };
