@@ -8,6 +8,7 @@ const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const onActorsOfMovie = () => {
@@ -18,7 +19,7 @@ const Cast = () => {
           setActors(actors);
         })
         .catch(error => {
-          console.log(error);
+          setIsError(error.message);
         })
         .finally(() => {
           setLoading(false);
@@ -31,6 +32,7 @@ const Cast = () => {
   return (
     <div>
       {loading && <Loader />}
+      {isError && <p>There is no information yet.</p>}
 
       <List>
         {actors.map(({ id, profile_path, original_name, name, character }) => (

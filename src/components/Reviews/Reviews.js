@@ -8,6 +8,7 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchReviewsFilms = () => {
@@ -18,7 +19,7 @@ const Reviews = () => {
           setReviews(reviews);
         })
         .catch(error => {
-          console.log(error);
+          setIsError(error.message);
         })
         .finally(() => {
           setLoading(false);
@@ -31,6 +32,7 @@ const Reviews = () => {
   return (
     <>
       {loading && <Loader />}
+      {isError && <p>Not Found</p>}
       {reviews.length !== 0 && (
         <div>
           <List>

@@ -33,7 +33,7 @@ export const LinkInfo = styled(Link)`
   color: #191d1e;
 
   &:hover {
-    color: tomato;
+    color: green;
   }
 `;
 
