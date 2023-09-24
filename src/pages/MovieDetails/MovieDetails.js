@@ -88,7 +88,9 @@ const MovieDetails = () => {
         <h3>Additional information</h3>
         <ListInfo>
           <li>
-            <LinkInfo to="cast">Cast</LinkInfo>
+            <LinkInfo to="cast" state={{ ...location.state }}>
+              Cast
+            </LinkInfo>
           </li>
           <li>
             <LinkInfo to="reviews">Reviews</LinkInfo>

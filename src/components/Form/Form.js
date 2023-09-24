@@ -21,6 +21,8 @@ const Form = ({ searchMovies }) => {
         name="query"
         autoFocus
         value={query}
+        autoComplete="off"
+        placeholder="Search movie..."
         onChange={handleInputChange}
       />
       <Button type="submit">Search</Button>

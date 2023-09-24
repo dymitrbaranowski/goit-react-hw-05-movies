@@ -51,6 +51,7 @@ const Cast = () => {
           </li>
         ))}
       </List>
+      {actors.length === 0 && <div>We don't have any cast for this movie.</div>}
     </div>
   );
 };
