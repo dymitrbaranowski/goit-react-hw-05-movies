@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { SearchForm, Input, Button } from './Form.styled';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Form = ({ searchMovies }) => {
   const [searchParams, setSearchParams] = useSearchParams();
