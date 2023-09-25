@@ -3,6 +3,7 @@ import Loader from 'components/Loader/Loader';
 import EditorList from 'components/EditorList/EditorList';
 import Form from 'components/Form/Form';
 import { fetchSearchByKeyword } from 'services/TmbdApi';
+import { useLocation } from 'react-router-dom';
 
 const Movies = () => {
   const [searchFilms, setSearchFilms] = useState([]);
@@ -24,6 +25,8 @@ const Movies = () => {
         setLoading(false);
       });
   };
+
+  // const location = useLocation();
 
   return (
     <main>

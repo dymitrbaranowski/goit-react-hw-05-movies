@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState, Suspense } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { fetchMovieDetails } from 'services/TmbdApi';
 import Loader from 'components/Loader/Loader';
@@ -15,7 +15,9 @@ const MovieDetails = () => {
   const [movieInfo, setMovieInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-
+  const backLinkLocationRef = useRef(location?.state?.from ?? '/');
+  console.log(backLinkLocationRef);
+  console.log(location);
   useEffect(() => {
     const fetchMovieDetailsFilms = () => {
       setLoading(true);
@@ -51,7 +53,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={location.state?.from ?? '/'}>
+      <Link to={backLinkLocationRef.current}>
         <Button type="button">Go back</Button>
       </Link>
       {loading && <Loader />}
@@ -88,16 +90,16 @@ const MovieDetails = () => {
         <h3>Additional information</h3>
         <ListInfo>
           <li>
-            <LinkInfo to="cast" state={{ ...location.state }}>
-              Cast
-            </LinkInfo>
+            <LinkInfo to="cast">Cast</LinkInfo>
           </li>
           <li>
             <LinkInfo to="reviews">Reviews</LinkInfo>
           </li>
         </ListInfo>
         <hr />
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );

@@ -1,12 +1,19 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SearchForm, Input, Button } from './Form.styled';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 const Form = ({ searchMovies }) => {
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') ?? '';
 
   const handleInputChange = event => {
-    setQuery(event.target.value);
+    const moovieValue = event.target.value;
+    if (moovieValue === '') {
+      return setSearchParams({});
+    }
+    setSearchParams({ query: moovieValue });
+    // searchParams.set('query', event.target.value);
+    // setSearchParams(searchParams);
   };
 
   const handleSubmit = event => {
